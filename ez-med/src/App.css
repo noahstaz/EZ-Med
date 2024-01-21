@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css */
+.navbar {
+  background-color: #f2f2f2; /* Example background color */
+  padding: 10px;
+}
+
+.nav-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: inline-block; /* Display links horizontally */
+  margin-right: 10px; /* Add spacing between links */
+}
+
+.nav-item a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Example link color */
+}
+
+.nav-item a:hover {
+  color: #912f40; /* Color when hovering over the link */
+}

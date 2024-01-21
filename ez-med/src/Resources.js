@@ -1,44 +1,41 @@
+// Resources.js
 import React from 'react';
-import './Resources.css'; // Make sure to create a Resources.css file for styling
+import './Resources.css';
+
+const ResourceItem = ({ title, contact, email }) => (
+  <li className="resource-item">
+    {title}
+    <ul>
+      {contact && <li>Contact: {contact}</li>}
+      {email && <li>Email: {email}</li>}
+    </ul>
+  </li>
+);
+
+const ResourceSection = ({ heading, children }) => (
+  <section className="resource-section">
+    <h2>{heading}</h2>
+    <ul>{children}</ul>
+  </section>
+);
 
 function Resources() {
   return (
-    <div className="resources">
+    <div className="resources-container">
       <header className="resources-header">
         <button className="back-button">&larr;</button>
         <h1>User Resources</h1>
       </header>
-      <section className="resource-section">
-        <h2>Jacob is being treated by:</h2>
-        <ul>
-          <li>
-            Dr. Old Person
-            <ul>
-              <li>Contact: 123 456 7890</li>
-              <li>Email: old@person.com</li>
-            </ul>
-          </li>
-          <li>
-            Nurse
-            <ul>
-              <li>Contact: 345 678 9012</li>
-              <li>Email: nurse@hospital.ca</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section className="resource-section">
-        <h2>Here are some social resources you may need...</h2>
-        <ul>
-          <li>BetterHelp</li>
-        </ul>
-      </section>
-      <section className="resource-section">
-        <h2>Here are some financial resources you may need...</h2>
-        <ul>
-          <li>Bank</li>
-        </ul>
-      </section>
+      <ResourceSection heading="Jacob is being treated by:">
+        <ResourceItem title="Dr. Old Person" contact="123 456 7890" email="old@person.com" />
+        <ResourceItem title="Nurse" contact="345 678 9012" email="nurse@hospital.ca" />
+      </ResourceSection>
+      <ResourceSection heading="Here are some social resources you may need...">
+        {/* Add ResourceItem components here */}
+      </ResourceSection>
+      <ResourceSection heading="Here are some financial resources you may need...">
+        {/* Add ResourceItem components here */}
+      </ResourceSection>
     </div>
   );
 }

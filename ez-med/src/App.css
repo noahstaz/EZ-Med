@@ -1,152 +1,79 @@
+/* App.css */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
 
-.card h2 {
-  font-size: 80px;
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #EBDCCB;
+  margin: 0;
+  padding: 0;
+  color: #17183B;
 }
 
-.card p,
-.card li {
-  font-size: 30px;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* App.css */
 .navbar {
-  background-color: #17183B; /* Example background color */
-  padding: 10px;
+  background-color: #17183B;
+  padding: 0.5em 1em;
 }
 
 .nav-list {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-item {
-  display: inline-block; /* Display items horizontally */
-  margin-right: 10px; /* Add spacing between items */
-  padding: 8px 12px; /* Add padding to create boxes */
-  border-radius: 5px; /* Add rounded corners to the boxes */
-  transition: background-color 0.3s ease; /* Smooth transition for color change */
+  margin: 0 1em;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .nav-item a {
-  text-decoration: none; /* Remove underline from links */
-  color: #EBDCCB; /* Default link color */
+  text-decoration: none;
+  color: #EBDCCB;
+  transition: color 0.3s ease;
 }
 
 .nav-item:hover {
-  background-color: #912f40; /* Background color when hovering over the item */
+  background-color: #4E5166;
 }
 
 .nav-item:hover a {
-  color: #fff; /* Text color when hovering over the item */
-}
-
-body {
-  background-color: #EBDCCB;
-  margin: 0; /* Reset default margin */
-  padding: 0; /* Reset default padding */
-}
-
-@font-face {
-  font-family: "Merriweather";
-  src: url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap");
-}
-
-.home-page {
-  text-align: center;
-}
-
-.medications-container {
-  max-height: 100px; /* Adjust the maximum height as needed */
-  overflow-y: auto;
-}
-
-.medication-item {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.medication-item.fade-in {
-  opacity: 1;
-}
-
-.home-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.home-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  justify-content: center;
+  color: #fff;
 }
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 10px;
-  width: 100%;
-  height: 100%;
-  margin: 30px;
-  margin-top: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1em;
+  padding: 1em;
+  justify-content: center;
 }
 
 .card {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  color: #17183B;
-  background-color: #B2A3B5;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 30vw;
-  height: 40vh;
-  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  margin: 1em;
+  transition: transform 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+  color: #17183B;
+  font-size: 1.5em;
+}
+
+.card p,
+.card li {
+  font-size: 1em;
+}
+
+/* Rest of your CSS */

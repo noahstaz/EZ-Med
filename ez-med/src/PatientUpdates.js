@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-
+import "./PatientUpdates.css";
 
 function PatientUpdates() {
   const [patientId, setPatientId] = useState('65ac545aa8fd58d8744467e5');
@@ -40,18 +40,19 @@ function PatientUpdates() {
 
   return (
       <div>
-        <h1>Fetch Patient Information and Updates</h1>
+        <h1 className="patient-update-text">Fetch Patient Information and Updates</h1>
 
         <div>
-          <label htmlFor="patientId">Patient ID:</label>
+          <label htmlFor="patientId" className="patient-update-text">Patient ID:</label>
           <input
+              className="patient-update-textbox"
               type="text"
               id="patientId"
               placeholder="Enter Patient ID"
               value={patientId}
               onChange={(e) => setPatientId(e.target.value)}
           />
-          <button onClick={fetchAndDisplayPatient}>Fetch Patient</button>
+          <button className="patient-update-button" onClick={fetchAndDisplayPatient}>Fetch Patient</button>
         </div>
 
         {error && <div>Error: {error}</div>}

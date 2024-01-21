@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 
 mongoose.connect('mongodb+srv://aarondeo30:nwHacks@nwhacks.uiacifn.mongodb.net/Customers?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('db connected');
@@ -7,6 +9,8 @@ mongoose.connect('mongodb+srv://aarondeo30:nwHacks@nwhacks.uiacifn.mongodb.net/C
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
@@ -62,6 +66,19 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+app.get('/users/email/:email', async (req, res) => {
+    try {
+        const email = req.params.email; // Extract the email from the request parameters
+        const user = await User.findOne({ email: email }); // Find user by email
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 // POST a new user
 app.post('/users', async (req, res) => {
     try {

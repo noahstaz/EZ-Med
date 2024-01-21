@@ -83,7 +83,7 @@ app.get('/patients', async (req, res) => {
     }
 });
 
-app.get('/patients/:familyId', async (req, res) => {
+app.get('/patients/family/:familyId', async (req, res) => {
     try {
         const familyId = req.params.familyId;
 
@@ -100,6 +100,19 @@ app.get('/patients/:familyId', async (req, res) => {
     }
 });
 
+app.get('/patients/:id', async (req, res) => {
+    try {
+        const patient = await Patient.findById(req.params.id);
+        if (!patient) {
+            return res.status(404).json({ error: 'Patient not found' });
+        }
+        res.json(patient);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/updates', async (req, res) => {
     try {
         const updates = await Updates.find();
@@ -109,6 +122,8 @@ app.get('/updates', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 app.get('/updates/:patientid', async (req, res) => {
     try {

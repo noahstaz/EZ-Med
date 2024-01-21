@@ -8,6 +8,15 @@ mongoose.connect('mongodb+srv://aarondeo30:nwHacks@nwhacks.uiacifn.mongodb.net/C
 const app = express();
 app.use(express.json());
 
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
+
+const patientSchema = new mongoose.Schema({
+    family: ObjectId,
+    nurse: ObjectId,
+    name: String
+});
+
 // Define your user schema
 const userSchema = new mongoose.Schema({
     email: String,
@@ -18,6 +27,7 @@ const userSchema = new mongoose.Schema({
 
 // Create the User model associated with the "User" collection
 const User = mongoose.model('User', userSchema, 'User');
+const Patient = mongoose.model('Patient', patientSchema, 'Patient');
 
 // GET all users
 app.get('/users', async (req, res) => {
@@ -49,6 +59,33 @@ app.post('/users', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
         res.status(201).json(newUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/patients', async (req, res) => {
+    try {
+        const patients = await Patient.find();
+        res.json(patients);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/patients/:familyId', async (req, res) => {
+    try {
+        const familyId = req.params.familyId;
+
+        // Validate if the provided familyId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(familyId)) {
+            return res.status(400).json({ error: 'Invalid family ID format' });
+        }
+
+        const patients = await Patient.find({ family: familyId });
+        res.json(patients);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

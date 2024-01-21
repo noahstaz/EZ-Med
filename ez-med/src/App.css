@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
 
-h2 {
+.card h2 {
   font-size: 80px;
 }
 

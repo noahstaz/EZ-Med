@@ -27,14 +27,14 @@ function Resources() {
         <h1>User Resources</h1>
       </header>
       <ResourceSection heading="Jacob is being treated by:">
-        <ResourceItem title="Dr. Old Person" contact="123 456 7890" email="old@person.com" />
-        <ResourceItem title="Nurse" contact="345 678 9012" email="nurse@hospital.ca" />
+        <ResourceItem title="Dr. Aaron Deo" contact="467 566-3334" email="doubleAron@gmail.com" />
+        <ResourceItem title="Nurse" contact="345 678 9012" email="Vedu@vancouverHospital.ca" />
       </ResourceSection>
-      <ResourceSection heading="Here are some social resources you may need...">
-        {/* Add ResourceItem components here */}
+      <ResourceSection heading="Here are some social resources to check out">
+      <ResourceItem title="Mental Health Services" contact="800 234 5678" link="https://www.mentalhealth.org" />
       </ResourceSection>
-      <ResourceSection heading="Here are some financial resources you may need...">
-        {/* Add ResourceItem components here */}
+      <ResourceSection heading="Here are some financial resources to check out">
+      <ResourceItem title="Emergency Aid" contact="911" link="https://www.emergencyaid.org" />
       </ResourceSection>
     </div>
   );

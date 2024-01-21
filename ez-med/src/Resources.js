@@ -34,7 +34,7 @@ function Resources() {
       <ResourceItem title="Mental Health Services" contact="800 234 5678" link="https://www.mentalhealth.org" />
       </ResourceSection>
       <ResourceSection heading="Here are some financial resources to check out">
-      <ResourceItem title="Emergency Aid" contact="911" link="https://www.emergencyaid.org" />
+      <ResourceItem title="Emergency Financial Aid" contact="280 684 4995" link="https://www.emergencyaid.org" />
       </ResourceSection>
     </div>
   );

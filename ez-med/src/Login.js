@@ -21,7 +21,7 @@ function Login() {
                 if (password === user.password) {
                     console.log('Login successful');
                     localStorage.setItem('userid', user._id);
-                    history.push("/App");
+                    history.push("/");
                 } else {
                     alert('Incorrect password');
                 }

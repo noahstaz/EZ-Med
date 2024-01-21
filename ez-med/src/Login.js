@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import './Login.css';
 // Inside the handleLogin function
 
@@ -6,7 +7,7 @@ import './Login.css';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const history = useHistory();
 
     const handleLogin = async () => {
         try {
@@ -18,6 +19,7 @@ function Login() {
             if (password === user.password) {
                 console.log('Login successful');
                 localStorage.setItem('userid', user._id);
+                history.push("/App");
             } else {
                 alert('Incorrect password');
             }

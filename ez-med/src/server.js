@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 
 mongoose.connect('mongodb+srv://aarondeo30:nwHacks@nwhacks.uiacifn.mongodb.net/Customers?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('db connected');
@@ -7,6 +9,8 @@ mongoose.connect('mongodb+srv://aarondeo30:nwHacks@nwhacks.uiacifn.mongodb.net/C
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;

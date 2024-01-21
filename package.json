@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mappedin/mappedin-js": "^5.26.0",
     "react-router-dom": "^5.3.4"
   }
 }

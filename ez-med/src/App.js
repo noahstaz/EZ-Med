@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import Resources from './Resources'; // Import your Resources component
 import Map from './Map'; // Import your Map component
-import PatientUpdates from './PatientUpdates'; // Import your PatientUpdates component
+import PatientUpdates from './PatientUpdates';
+import Login from "./Login";
 
 const medications = ['Medication 1', 'Medication 2']; // Replace with your actual medication data
 
@@ -83,6 +84,9 @@ function App() {
             <li className="nav-item">
               <Link to="/patient-updates">Patient Updates</Link>
             </li>
+            <li className="nav-item">
+              <Link to="/login">Login</Link>
+            </li>
           </ul>
         </nav>
 
@@ -96,9 +100,13 @@ function App() {
           <Route path="/patient-updates">
             <PatientUpdates />
           </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/">
             <HomePage />
           </Route>
+
         </Switch>
       </div>
     </Router>

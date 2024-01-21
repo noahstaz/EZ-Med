@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import './PatientUpdates.css';
 function PatientUpdates() {
   const [patientId, setPatientId] = useState('65ac545aa8fd58d8744467e5');
   const [patientDetails, setPatientDetails] = useState(null);
@@ -37,25 +38,21 @@ function PatientUpdates() {
   }, [fetchAndDisplayPatient]);
     return (
         <div>
-          <h1>Fetch Patient Information and Updates</h1>
           {error && <div>Error: {error}</div>}
 
           {patientDetails && (
-              <div>
-                <h3>Patient Details:</h3>
-                <p>ID: {patientDetails._id}</p>
-                <p>Name: {patientDetails.name}</p>
+              <div className={"patient-updates-header"}>
+                <h1>Here are the updates for {patientDetails.name}</h1>
               </div>
           )}
 
           {updates && (
-              <div>
-                <h3>Patient Updates:</h3>
+              <div >
                 {updates.length === 0 ? (
-                    <p>No updates available for the patient</p>
+                    <h2>No updates available for the patient</h2>
                 ) : (
                     updates.map((update, index) => (
-                        <p key={index}>Update: {update.update}</p>
+                        <h2 key={index}>{update.date}: {update.update}</h2>
                     ))
                 )}
               </div>

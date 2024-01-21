@@ -36,10 +36,18 @@ const patientUpdatesSchema = new mongoose.Schema({
     date: String
 });
 
+const statusSchema = new mongoose.Schema({
+    id: ObjectId,
+    patient: ObjectId,
+    state: String,
+    lastfoodintakedate: String,
+    lastfoodintaketype: String,
+});
 // Create the User model associated with the "User" collection
 const User = mongoose.model('User', userSchema, 'User');
 const Patient = mongoose.model('Patient', patientSchema, 'Patient');
-const Updates = mongoose.model('Updates', patientUpdatesSchema, 'Updates')
+const Updates = mongoose.model('Updates', patientUpdatesSchema, 'Updates');
+const Status = mongoose.model('Status', statusSchema, 'Status');
 
 // GET all users
 app.get('/users', async (req, res) => {
@@ -66,6 +74,21 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+app.get('/status/:patient', async (req, res) => {
+    try {
+      const patientId = req.params.patient; // Use req.params.patient to get the patient ID
+      const status = await Status.findOne({ patient: patientId }); // Query based on the patient ID
+  
+      if (!status) {
+        return res.status(404).json({ error: 'Status not found' });
+      }
+  
+      res.json(status);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 app.get('/users/email/:email', async (req, res) => {
     try {
         const email = req.params.email; // Extract the email from the request parameters

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 //import logo from './logo.svg';
 import './App.css';
@@ -9,10 +9,10 @@ import Login from "./Login";
 
 const medications = ['Medication 1', 'Medication 2']; // Replace with your actual medication data
 
-function GreetingCard() {
+function GreetingCard({ userName }) {
   return (
     <div className="card">
-      <h2>Hi Joe,</h2>
+      <h2>Hi {userName},</h2>
     </div>
   );
 }
@@ -54,14 +54,12 @@ function MedicationsCard({ medications }) {
   );
 }
 
-function HomePage() {
+function HomePage({ userName }) {
   return (
     <div className="home-page">
       <div className="card-grid">
-        <GreetingCard />
-        <UpdatesCard />
-        <SleepStatusCard />
-        <BreakfastCard />
+        <GreetingCard userName={userName} />
+        {/* ...other cards */}
         <MedicationsCard medications={medications} />
       </div>
     </div>
@@ -69,6 +67,28 @@ function HomePage() {
 }
 
 function App() {
+  const [userId] = useState('65acd66506abb33dfad0dab5');
+  const [userName, setUserName] = useState(null);
+  const [error, setError] = useState(null);
+
+  const fetchAndDisplayUser = async () => {
+    try {
+      const userResponse = await fetch(`http://localhost:8080/users/${userId}`);
+      if (!userResponse.ok) {
+        throw new Error('Error fetching user');
+      }
+      const userData = await userResponse.json();
+      setUserName(userData.name);
+    } catch (error) {
+      console.error(error.message);
+      setError('Error fetching data');
+    }
+  };
+
+  useEffect(() => {
+    fetchAndDisplayUser();
+  }, []); // Empty dependency array to run once on mount
+
   return (
     <Router>
       <div>
@@ -106,17 +126,12 @@ function App() {
             <Login />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage userName={userName} />
           </Route>
-
         </Switch>
       </div>
     </Router>
   );
 }
-
-
-
-
 
 export default App;

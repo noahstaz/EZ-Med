@@ -12,7 +12,7 @@ const medications = ['Medication 1', 'Medication 2']; // Replace with your actua
 function GreetingCard({ userName }) {
   return (
     <div className="card">
-      <h2>Hi {userName},</h2>
+      <h2>Hello {userName}...</h2>
     </div>
   );
 }
@@ -25,28 +25,32 @@ function UpdatesCard() {
   );
 }
 
-function SleepStatusCard() {
+function SleepStatusCard({ state }) {
   return (
     <div className="card">
-      <p>They are currently sleeping.</p>
+      <p>They are currently {state}.</p>
     </div>
   );
 }
 
-function BreakfastCard() {
+function BreakfastCard({ meal}) {
   return (
     <div className="card">
-      <p>They had breakfast at 9:00 AM.</p>
+      <p>They last ate {meal}.</p>
     </div>
   );
 }
 
-function MedicationsCard({ medications }) {
+function MedicationsCard({ med }) {
+  if (!med) {
+    return <div className="card">Loading...</div>;
+  }
+
   return (
     <div className="card">
       <p>These are the medications they are on:</p>
       <ul>
-        {medications.map((medication, index) => (
+        {med.map((medication, index) => (
           <li key={index}>{medication}</li>
         ))}
       </ul>
@@ -54,13 +58,15 @@ function MedicationsCard({ medications }) {
   );
 }
 
-function HomePage({ userName }) {
+function HomePage({ userName, state, med, meal }) {
   return (
     <div className="home-page">
       <div className="card-grid">
         <GreetingCard userName={userName} />
-        {/* ...other cards */}
-        <MedicationsCard medications={medications} />
+        <UpdatesCard/>
+        <SleepStatusCard state = {state} />
+        <MedicationsCard med={med} />
+        <BreakfastCard meal = {meal} />
       </div>
     </div>
   );
@@ -68,8 +74,12 @@ function HomePage({ userName }) {
 
 function App() {
   const [userId] = useState('65acd66506abb33dfad0dab5');
+  const [patientId] = useState('65ac545aa8fd58d8744467e5'); // Replace with your patient ID
   const [userName, setUserName] = useState(null);
   const [error, setError] = useState(null);
+  const [state, setState] = useState(null);
+  const [med, setMed] = useState(null);
+  const [meal, setMeal] = useState(null);
 
   const fetchAndDisplayUser = async () => {
     try {
@@ -79,6 +89,15 @@ function App() {
       }
       const userData = await userResponse.json();
       setUserName(userData.name);
+  
+      const statusResponse = await fetch(`http://localhost:8080/status/${patientId}`);
+      if (!statusResponse.ok) {
+        throw new Error('Error fetching status');
+      }
+      const statusData = await statusResponse.json();
+      setState(statusData.state);
+      setMed(statusData.medication);
+      setMeal(statusData.lastfoodintaketype);
     } catch (error) {
       console.error(error.message);
       setError('Error fetching data');
@@ -87,8 +106,7 @@ function App() {
 
   useEffect(() => {
     fetchAndDisplayUser();
-  }, []); // Empty dependency array to run once on mount
-
+  }, []);
   return (
     <Router>
       <div>
@@ -126,7 +144,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/">
-            <HomePage userName={userName} />
+            <HomePage userName={userName} state = {state} med = {med} meal={meal} />
           </Route>
         </Switch>
       </div>

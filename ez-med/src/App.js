@@ -45,9 +45,11 @@ function MedicationsCard({ medications }) {
   return (
     <div className="card">
       <p>These are the medications they are on:</p>
-      {medications.map((medication, index) => (
-        <p key={index}>{medication}</p>
-      ))}
+      <ul>
+        {medications.map((medication, index) => (
+          <li key={index}>{medication}</li>
+        ))}
+      </ul>
     </div>
   );
 }

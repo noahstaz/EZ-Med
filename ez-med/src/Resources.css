@@ -15,6 +15,9 @@
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 20px;
+    background-color: #ececec;
+    padding: 10px 20px;
+    border-radius: 8px 8px 0 0; /* Rounded corners for the header only */
   }
   
   .back-button {
@@ -26,15 +29,15 @@
   }
   
   .resource-section {
-    background-color: #ececec;
+    background-color: #f7f7f7;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
   }
   
   .resource-section h2 {
-    margin-top: 0;
     color: #333;
+    margin-top: 0;
   }
   
   .resource-section ul {
@@ -43,21 +46,20 @@
     margin: 10px 0;
   }
   
-  .resource-section ul li {
+  .resource-item {
     padding: 8px 0;
     border-bottom: 1px solid #ddd;
   }
   
-  .resource-section ul li:last-child {
+  .resource-item:last-child {
     border-bottom: none;
   }
   
-  .resource-section ul li ul {
+  .resource-item ul {
     padding-left: 20px;
   }
   
-  .resource-section ul li ul li {
+  .resource-item ul li {
     padding: 4px 0;
-    border-bottom: none;
   }
   

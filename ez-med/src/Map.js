@@ -13,10 +13,21 @@ function Map() {
         <button className="map-button">Display Map to Parking</button>
       </div>
       <div className="map-placeholder">
-        {/* Placeholder for map API integration */}
+        <iframe
+          title="Mappedin Map"
+          name="Mappedin Map"
+          scrolling="no"
+          width="100%"
+          height="650"
+          frameBorder="0"
+          style={{ border: 0 }}
+          src="https://maker.mappedin.com/map/65ac79afca641a9a1399dc58/directions?map=Level%202&location=Patient%20Room"
+          allowFullScreen
+        ></iframe>
       </div>
     </div>
   );
 }
 
 export default Map;
+

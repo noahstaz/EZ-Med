@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+
+
 .App {
   text-align: center;
 }
@@ -39,7 +42,7 @@
 
 /* App.css */
 .navbar {
-  background-color: #f2f2f2; /* Example background color */
+  background-color: #17183B; /* Example background color */
   padding: 10px;
 }
 
@@ -50,15 +53,70 @@
 }
 
 .nav-item {
-  display: inline-block; /* Display links horizontally */
-  margin-right: 10px; /* Add spacing between links */
+  display: inline-block; /* Display items horizontally */
+  margin-right: 10px; /* Add spacing between items */
+  padding: 8px 12px; /* Add padding to create boxes */
+  border-radius: 5px; /* Add rounded corners to the boxes */
+  transition: background-color 0.3s ease; /* Smooth transition for color change */
 }
 
 .nav-item a {
   text-decoration: none; /* Remove underline from links */
-  color: #333; /* Example link color */
+  color: #EBDCCB; /* Default link color */
 }
 
-.nav-item a:hover {
-  color: #912f40; /* Color when hovering over the link */
+.nav-item:hover {
+  background-color: #912f40; /* Background color when hovering over the item */
+}
+
+.nav-item:hover a {
+  color: #fff; /* Text color when hovering over the item */
+}
+
+body {
+  background-color: #EBDCCB;
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset default padding */
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap");
+}
+
+.home-page {
+  text-align: center;
+}
+
+.medications-container {
+  max-height: 100px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+.medication-item {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.medication-item.fade-in {
+  opacity: 1;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
